@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Student Loan Prediction</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+  <style>
+  body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f5f7;
+  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 { 
+    background-color:rgb(255, 204, 102); /* Green */
+    color: black;
+    text-align: left;
+
+  }
+  .bg-2 { 
+    background-color: #474e5d; /* Dark Blue */
+    color: #ffffff;
+  }
+  .bg-3 { 
+    background-color: #ffffff; /* White */
+    color: #555555;
+  }
+  .bg-4 { 
+    background-color: #2f2f2f; /* Black Gray */
+    color: #fff;
+  }
+  .container-fluid {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+  }
+  .navbar-nav  li a:hover {
+    color: #1abc9c !important;
+  }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-default bg-4">
+  <div class="container">
+    <div class="navbar-header">
+      
+      <h2>Student Loan Prediction</h2>
+    </div>
+    
+  </div>
+</nav>
+
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><p style="text-align: center;">Using this WebApp you can predict whether a user will be able to repay the loan debt after the graduation.</p></div>
+    <div class="col-md-2"></div>
+  </div>
+  <p style="text-align:center; font-size: 20px; font-weight: bolder;"><i class="text-center text-info">{{ prediction_text }}</i></p>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+  <form action="{{ url_for('predict')}}" method="post">
+    <div class="form-group">
+      <label for="tv">Enter median earnings of students working and not enrolled 8 years after entry</label>
+      <input type="text" class="form-control" name="med_earn" id="med_earn" placeholder="Median earnings. e.g 23000" required="required">
+    </div>
+    <div class="form-group">
+      <label for="newspaper">Enter percent completed within 4 years at original institution</label>
+      <input type="text" class="form-control" name="per" id="per" placeholder="Institution % completion. e.g 0.23" required="required">
+    </div>
+    <div class="form-group">
+      <label for="newspaper">Enter the average age</label>
+      <input type="text" class="form-control" name="age" id="age" placeholder="Average age of entry. e.g 43" required="required">
+    </div>
+    <div class="form-group">
+      <label for="newspaper">Enter the 3 year default cohort rate</label>
+      <input type="text" class="form-control" name="cohort" id="cohort" placeholder="Default cohort rate. e.g 0.126" required="required">
+    </div>
+    <div class="form-group">
+      <label for="newspaper">Enter enrollment of undergraduate certificate/degree-seeking students</label>
+      <input type="text" class="form-control" name="enroll" id="enroll" placeholder="Enrollment undergraduate enrollment. e.g 5600" required="required">
+    </div>
+    <div class="form-group">
+      <label for="newspaper">Enter the median household income</label>
+      <input type="text" class="form-control" name="hh_income" id="hh_income" placeholder="Median household income. e.g 56000" required="required">
+    </div>
+    <div class="form-group">
+      <label for="newspaper">Enter the median debt for students who have completed</label>
+      <input type="text" class="form-control" name="med_debt" id="med_debt" placeholder="Debt remaining. e.g 12000" required="required">
+    </div>
+     <div class="form-group">
+      <label for="newspaper">Enter the total share of enrollment for women</label>
+      <input type="text" class="form-control" name="tot_share" id="tot_share" placeholder="Total share. e.g 10000" required="required">
+    </div>
+    <div class="form-group">
+      <label for="newspaper">Enter the average cost of attendance for academic and program year</label>
+      <input type="text" class="form-control" name="avg_cost" id="avg_cost" placeholder="Average cost. e.g 10050" required="required">
+    </div>
+    <div class="form-group">
+      <label for="newspaper">Percent of all undergraduate students receiving a federal student loan</label>
+      <input type="text" class="form-control" name="per_uc" id="per_uc" placeholder="Student % with federal loan. e.g 0.75" required="required">
+    </div>
+    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+    <button type="submit" class="btn btn-primary btn-block btn-large" onsubmit="myFunction">Predict Response</button>
+  </form>
+
+</div>
+<div class="col-md-4"></div>
+</div>
+</div>
+
+
+
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+  <!-- <p>Thanks to <a href="https://www.boardinfinity.com">BoardInfinity</a></p> -->
+  <p class='footer-description'>Made with ❤️ by Loangenics Team.</p>
+     
+</footer>
+</body>
+</html>
